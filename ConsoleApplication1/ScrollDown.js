@@ -1,0 +1,1 @@
+﻿for (var i = 0; i < 142; i++) setTimeout(function () { window.scrollTo(0, document.body.scrollHeight); }, i * 100);
