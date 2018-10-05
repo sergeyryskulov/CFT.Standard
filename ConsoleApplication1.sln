@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saver", "ConsoleApplication1\Saver.csproj", "{AAB94C66-9151-467F-95F7-D9E4A76A6B89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharepointEmulator", "SharepointEmulator\SharepointEmulator.csproj", "{05D9B3AC-E233-4ED4-BE55-F2A20B766D96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelReader", "ExcelReader\ExcelReader.csproj", "{27EB266A-93F8-407A-B2F7-985E46B1BA55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharepointEmulator.Tests", "SharepointEmulator.Tests\SharepointEmulator.Tests.csproj", "{122E1890-55FE-4D5A-93FD-1C6D4D33BAAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AAB94C66-9151-467F-95F7-D9E4A76A6B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAB94C66-9151-467F-95F7-D9E4A76A6B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAB94C66-9151-467F-95F7-D9E4A76A6B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAB94C66-9151-467F-95F7-D9E4A76A6B89}.Release|Any CPU.Build.0 = Release|Any CPU
-		{27EB266A-93F8-407A-B2F7-985E46B1BA55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27EB266A-93F8-407A-B2F7-985E46B1BA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27EB266A-93F8-407A-B2F7-985E46B1BA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27EB266A-93F8-407A-B2F7-985E46B1BA55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05D9B3AC-E233-4ED4-BE55-F2A20B766D96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05D9B3AC-E233-4ED4-BE55-F2A20B766D96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05D9B3AC-E233-4ED4-BE55-F2A20B766D96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05D9B3AC-E233-4ED4-BE55-F2A20B766D96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{122E1890-55FE-4D5A-93FD-1C6D4D33BAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{122E1890-55FE-4D5A-93FD-1C6D4D33BAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{122E1890-55FE-4D5A-93FD-1C6D4D33BAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{122E1890-55FE-4D5A-93FD-1C6D4D33BAAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
