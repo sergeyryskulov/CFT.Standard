@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CFT.Standard.BL.Models.ViewModels;
+using CFT.Standard.DAL.Repositories;
 using CFT.Standard.Domain.Models;
 using CFT.Standard.Domain.Repositories;
 
@@ -12,17 +13,25 @@ namespace CFT.Standard.BL.Services
 	public class BankService
 	{
 		private IBankRepository _bankRepository;
+		private ICurrentUserRepository _currentUserRepository;
 
-		public BankService(IBankRepository bankRepository)
+		public BankService(IBankRepository bankRepository, ICurrentUserRepository currentUserRepository)
 		{
-			this._bankRepository = bankRepository;
+			_bankRepository = bankRepository;
+			_currentUserRepository = currentUserRepository;
+		}
+
+		public void AddBank(Bank bank)
+		{
+			bank.Author = _currentUserRepository.GetCurrentUserLookupValue();
+			_bankRepository.AddBank(bank);
 		}
 
 		public AllBanksViewModel GetAllBanks()
 		{			
 			return new AllBanksViewModel()
 			{
-				Banks = _bankRepository.GetBanks()
+				Banks = _bankRepository.GetAllBanks()
 			};
 		}
 	}

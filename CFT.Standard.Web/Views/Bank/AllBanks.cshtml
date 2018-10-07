@@ -1,4 +1,5 @@
-﻿@model CFT.Standard.BL.Models.ViewModels.AllBanksViewModel
+﻿@using CFT.Standard.Web.Helpers
+@model CFT.Standard.BL.Models.ViewModels.AllBanksViewModel
 @{
     Layout = null;
 }
@@ -9,15 +10,31 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <style>
+        .table-banks{
+            border-collapse: collapse;
+        }
+        .table-banks tr td, .table-banks tr th{
+            padding: 3px;
+            border: 1px solid black;
+        }
+
+
+    
+    </style>
 </head>
 <body>
 <div>
-    <table>
-     @foreach (var bank in @Model.Banks)
-     {
-        <tr><td>@bank.Author</td><td>@bank.Title</td></tr>        
-     }
-</table>
+    <a href="/Bank/Add" >Добавить банк</a>
+    <br/>
+    <br />
+    <table class="table-banks">
+        <tr><th>Создано</th><th>Кем создано</th><th>Название банка</th><th>БИК</th><th>Удалить</th></tr>
+        @foreach (var bank in @Model.Banks)
+        {
+            <tr><td>@WebConvertationHelper.ToDateFormat(bank.Created)</td> <td>@bank.Author.LookupValue</td><td>@bank.Title</td><td>@bank.Bik</td><td><a href="deleteBank(@bank.Id)">Удалить</a></td></tr>
+        }
+    </table>
 </div>
 </body>
 </html>

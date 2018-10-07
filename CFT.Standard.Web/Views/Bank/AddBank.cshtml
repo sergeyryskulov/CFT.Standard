@@ -1,0 +1,22 @@
+﻿@model CFT.Standard.Domain.Models.Bank
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddBank</title>
+</head>
+<body>
+@using (@Html.BeginForm())
+{ 
+    @:Добавить банк<br /><br />
+    @:Название банка: @Html.TextBoxFor(m => m.Title) <br/><br />
+    @:БИК: @Html.TextBoxFor(m => m.Bik) <br/><br />
+    <input type="submit" value="Добавить банк"/>
+}
+</body>
+</html>

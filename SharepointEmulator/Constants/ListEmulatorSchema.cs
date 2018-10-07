@@ -13,4 +13,10 @@ namespace SharepointEmulator
 		public static string Created = "Created";
 
 	}
+
+	public class BaseListFields
+	{
+		public static string Created="Created";
+
+	}
 }

@@ -5,6 +5,7 @@ using CFT.Standard.DAL.Contexts;
 using Unity;
 using Unity.AspNet.Mvc;
 using Unity.Injection;
+using Unity.Lifetime;
 
 namespace CFT.Standard.Web
 {
@@ -46,7 +47,12 @@ namespace CFT.Standard.Web
 
             // TODO: Register your type's mappings here.
             container.RegisterType<IBankRepository, BankRepository>( new PerRequestLifetimeManager());
-	        container.RegisterType<StandardListsContext>(new PerRequestLifetimeManager(), new InjectionConstructor(true) );
+	        container.RegisterType<IHttpRepository, HttpRepository>(new PerRequestLifetimeManager());
+			container.RegisterType<ICurrentUserRepository, CurrentUserRepository>(new PerRequestLifetimeManager());
+
+			//для реальной системы PerRequestLifetimeManager (тогда Dispose будет вызываться автоматом в конце реквеста
+	        //для эмулятора  PerRequestLifetimeManager (мы храним все в оперативке, объект не сбрасываем в конце реквеста)
+			container.RegisterType<StandardListsContext>(new ContainerControlledLifetimeManager(), new InjectionConstructor(true) );
 		}
     }
 }

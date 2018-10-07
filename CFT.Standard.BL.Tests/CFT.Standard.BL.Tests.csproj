@@ -40,7 +40,24 @@
       <HintPath>..\packages\Camlex.Client.dll.2.3.0\lib\net20\Camlex.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.10.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.10.0\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -63,13 +80,13 @@
       <Project>{647857CE-7A53-4820-9691-138A14B0A760}</Project>
       <Name>CFT.Standard.BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CFT.Standard.DAL.Contracts\CFT.Standard.DAL.Contracts.csproj">
+      <Project>{a02d1154-3204-4b53-87c1-a64e623f632c}</Project>
+      <Name>CFT.Standard.DAL.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CFT.Standard.DAL\CFT.Standard.DAL.csproj">
       <Project>{175d73a0-c510-4142-9a0a-054052925c99}</Project>
       <Name>CFT.Standard.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CFT.Standard.Domain\CFT.Standard.Domain.csproj">
-      <Project>{a02d1154-3204-4b53-87c1-a64e623f632c}</Project>
-      <Name>CFT.Standard.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\SharepointEmulator\SharepointEmulator.csproj">
       <Project>{05d9b3ac-e233-4ed4-be55-f2a20b766d96}</Project>

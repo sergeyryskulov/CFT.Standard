@@ -18,13 +18,13 @@ namespace CFT.Standard.DAL.Repositories
 			_ctx = ctx;
 		}
 		public void AddBank(Bank bank)
-		{
-			throw new NotImplementedException();
+		{			
+			_ctx.Banks.AddItem(bank);
 		}
 
-		public List<Bank> GetBanks()
+		public List<Bank> GetAllBanks()
 		{
-			return _ctx.Banks.GetAllItems().ConvertAll(m=>m.ToDomain());
+			return _ctx.Banks.GetAllItems();
 		}
 	}
 }

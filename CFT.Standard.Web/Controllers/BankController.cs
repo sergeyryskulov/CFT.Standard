@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CFT.Standard.BL.Services;
+using CFT.Standard.Domain.Models;
 
 namespace CFT.Standard.Web.Controllers
 {
@@ -17,8 +18,19 @@ namespace CFT.Standard.Web.Controllers
 		{
 			_bankService = bankService;
 		}
-		
-		
+
+		[HttpPost]
+	    public ActionResult Add(Bank bank)
+	    {
+		    _bankService.AddBank(bank);
+			return Redirect("/Bank/All");
+	    }		
+
+		public ActionResult Add()
+		{
+			return View("AddBank", new Bank());
+		}
+
 		public ActionResult All()
 		{			
 			return View("AllBanks", _bankService.GetAllBanks());

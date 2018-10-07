@@ -85,6 +85,7 @@ namespace SharepointEmulator
 			{
 				itemToUpdate[fieldName] = inputItem[fieldName];
 			}
+			list.ItemUpdating(itemToUpdate);
 		}
 
 		public int AddItem(T item)

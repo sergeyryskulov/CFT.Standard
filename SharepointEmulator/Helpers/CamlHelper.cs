@@ -92,9 +92,10 @@ namespace SharepointEmulator.Helpers
 
 			var leftOperand = listItem[operation.FieldName];
 			var parsedValue = SpecialConvert(operation.ValueType, operation.Value);
-			var rightOperand = Convert.ChangeType(parsedValue, new ConvertationHelper<T>().GetType(operation.FieldName));
+			var typeFromModel = new ConvertationHelper<T>().GetType(operation.FieldName);
+			var rightOperand = Convert.ChangeType(parsedValue, typeFromModel);
 			var operationType = operation.OperationType;
-			if (operationType == "Contains" || operationType == "BeginsWith")
+			if (operationType == "Contains" || operationType == "BeginsWith" || (operationType=="Eq" && typeFromModel == typeof(string)))
 			{
 				if (operationType == "Contains")
 				{
@@ -105,7 +106,10 @@ namespace SharepointEmulator.Helpers
 					return ("" + leftOperand).IndexOf("" + rightOperand, StringComparison.OrdinalIgnoreCase) == 0;
 				}
 
-
+				if (operationType == "Eq")
+				{
+					return ("" + leftOperand).ToUpper() == ("" + rightOperand).ToUpper();
+				}				
 			}
 
 			if (operationType == "Eq" || operationType == "Neq")

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{647857CE-7A53-4820-9691-138A14B0A760}</ProjectGuid>
+    <ProjectGuid>{A02D1154-3204-4B53-87C1-A64E623F632C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CFT.Standard.BL</RootNamespace>
-    <AssemblyName>CFT.Standard.BL</AssemblyName>
+    <RootNamespace>CFT.Standard.Domain</RootNamespace>
+    <AssemblyName>CFT.Standard.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,15 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ViewModels\AllBanksViewModel.cs" />
+    <Compile Include="Repositories\ICurrentUserRepository.cs" />
+    <Compile Include="Models\Bank.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BankService.cs" />
+    <Compile Include="Repositories\IHttpRepository.cs" />
+    <Compile Include="Repositories\IBankRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CFT.Standard.DAL.Contracts\CFT.Standard.DAL.Contracts.csproj">
-      <Project>{a02d1154-3204-4b53-87c1-a64e623f632c}</Project>
-      <Name>CFT.Standard.DAL.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SharepointEmulator\SharepointEmulator.csproj">
       <Project>{05d9b3ac-e233-4ed4-be55-f2a20b766d96}</Project>
       <Name>SharepointEmulator</Name>

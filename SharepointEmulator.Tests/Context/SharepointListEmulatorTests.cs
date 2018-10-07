@@ -53,9 +53,9 @@ namespace SharepointEmulator.Tests
 			});
 			var count = spList.GetItemById(id);
 			IQuery q = CamlexNET.Camlex.Query();
-			var test = spList.GetItems(CamlexNET.Camlex.Query().Where(
-			m => ((string)m["Title"]).StartsWith("te"))).Count;
-			Assert.IsTrue(test == 1);
+			var itemsCountCaseInsensitive = spList.GetItems(CamlexNET.Camlex.Query().Where(
+			m => (string)m["Title"] == "TEST")).Count;
+			Assert.IsTrue(itemsCountCaseInsensitive == 1);
 		}
 
 		[TestMethod()]
@@ -71,7 +71,8 @@ namespace SharepointEmulator.Tests
 				Author = new SharepointLookupFieldEmulator() { LookupId = userId}
 			});
 
-			var itemAfterAdd= spList.GetItemById(itemId);
+			var itemAfterAdd= spList.GetItemById(itemId);			
+			Assert.IsTrue(itemAfterAdd.Created!=null && itemAfterAdd.Created!=default(DateTime));
 			Assert.IsTrue(spList.GetAllItems().Count == 1);
 			Assert.IsTrue(itemAfterAdd.Author.LookupValue == "Иванов Иван Иванович");
 

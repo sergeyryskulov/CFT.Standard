@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,19 +42,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\StandardListsContext.cs" />
-    <Compile Include="Models\Bank.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BankRepository.cs" />
+    <Compile Include="Repositories\CurrentUserRepository.cs" />
+    <Compile Include="Repositories\HttpRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CFT.Standard.Domain\CFT.Standard.Domain.csproj">
+    <ProjectReference Include="..\CFT.Standard.DAL.Contracts\CFT.Standard.DAL.Contracts.csproj">
       <Project>{a02d1154-3204-4b53-87c1-a64e623f632c}</Project>
-      <Name>CFT.Standard.Domain</Name>
+      <Name>CFT.Standard.DAL.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\SharepointEmulator\SharepointEmulator.csproj">
       <Project>{05d9b3ac-e233-4ed4-be55-f2a20b766d96}</Project>
       <Name>SharepointEmulator</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

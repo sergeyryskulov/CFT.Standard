@@ -5,16 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using SharepointEmulator.Models;
 
-namespace SharepointEmulator
+namespace CFT.Standard.Domain.Models
 {
-	public class TestModel
+	public class Bank
 	{
-		public int ID { get; set; }		
+		public int Id { get; set; }
 
 		public string Title { get; set; }
+
+		public string Bik { get; set; }
 
 		public SharepointLookupFieldEmulator Author { get; set; }
 
 		public DateTime Created { get; set; }
+		
 	}
 }
