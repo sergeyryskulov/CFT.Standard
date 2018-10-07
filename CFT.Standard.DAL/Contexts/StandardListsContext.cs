@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices.AccountManagement;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using SharepointEmulator;
 
 using SharepointEmulator.Attributes;
@@ -24,33 +27,55 @@ namespace CFT.Standard.DAL.Contexts
 
 		private void Seed()
 		{
-			//Эмулятор шерпоинта не должен ни от чего зависеть, в том числе и от AD
-			//Поэтомы мы эмулируем AD. Впишите свой логин если его нет!
-			ClientContext.SiteUsers.AddItem(new UserEmulator()
-				{Login = "ftc\\testuser", DisplayName = "Иванов Иван Иванович"});
+			EmulateActiveDirectoryConnection();
+			EmulateSharepointConnection();
+		}
 
+		private void EmulateActiveDirectoryConnection()
+		{
 			ClientContext.SiteUsers.AddItem(new UserEmulator()
-				{ Login = "USER\\asus", DisplayName = "Рыскулов Сергей Николаевич" });
+				{ Login = "ftc\\testuser", DisplayName = "Иванов Иван Иванович" });
 
-		    //Теперь заполняем списки
+			//Мне нужно узнать дисплей нейм текущего сотрудника без коннекта к АД
+		    //Пока смотрю под кем идет поток, позже сделаю другое решение
+			var loginFromHttp = HttpContext.Current.User.Identity.Name;
+			if (loginFromHttp.Contains("|"))
+			{
+				loginFromHttp = loginFromHttp.Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries)[1];
+			}
+
+			var loginFromHttpWithoutDomain = loginFromHttp;
+			if (loginFromHttpWithoutDomain.Contains("\\"))
+			{
+				loginFromHttpWithoutDomain = loginFromHttp.Split(new[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[1];
+			}						
+			var loginFromThread= UserPrincipal.Current;
+			if (loginFromHttpWithoutDomain == loginFromThread.Name)
+			{
+				ClientContext.SiteUsers.AddItem(new UserEmulator()
+				{Login = loginFromHttp, DisplayName = loginFromThread.DisplayName});
+			}
+			
+		}
+
+		private void EmulateSharepointConnection()
+		{
 			var author =
 				new SharepointLookupFieldEmulator()
 				{
 					LookupId = ClientContext.EnsureUser("ftc\\testuser").Id
 				};
-				
+
 			var created = new DateTime(2018, 10, 1, 10, 0, 0);
 
 			Banks.AddItem(
-				new Bank() { Title = "test", Bik = "123", Created = created, Author = author });
+				new Bank() {Title = "test", Bik = "123", Created = created, Author = author});
 
 			Banks.AddItem(
-				new Bank() { Title = "test2", Bik = "345", Created  = created, Author = author});
+				new Bank() {Title = "test2", Bik = "345", Created = created, Author = author});
 
 			Banks.AddItem(
-				new Bank() { Title = "test3", Bik = "12121", Created = created, Author = author });
-
-
+				new Bank() {Title = "test3", Bik = "12121", Created = created, Author = author});
 		}
 
 		[SharepointListEmulatorAttribute(ListName = "Банки")]
