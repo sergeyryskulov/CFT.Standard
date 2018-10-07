@@ -44,8 +44,6 @@ namespace SharepointEmulator.Context
 				throw new Exception("List not found");				
 			}
 			return lists[title];			
-		}
-
-		
+		}		
 	}
 }

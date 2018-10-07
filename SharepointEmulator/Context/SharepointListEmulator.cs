@@ -14,10 +14,8 @@ namespace SharepointEmulator
 
 	public class SharepointListEmulator<T> where T : new()
 	{
-		
-		
-
-		private ListEmulator list;
+				
+		private ListEmulator _list;
 
 		private ConvertationHelper<T> _convertationHelper =new ConvertationHelper<T>();
 
@@ -30,7 +28,7 @@ namespace SharepointEmulator
 				clientContext.AddList(listName);
 			}
 
-			list = clientContext.GetListByTitle(listName);
+			_list = clientContext.GetListByTitle(listName);
 		}
 
 		public int Count()
@@ -40,7 +38,7 @@ namespace SharepointEmulator
 
 		public T GetItemById(int id)
 		{
-			var filtered = list.Where(m => m.Id == id).FirstOrDefault();
+			var filtered = _list.Where(m => m.Id == id).FirstOrDefault();
 			if (filtered == null)
 			{
 				throw new Exception("not found");
@@ -52,7 +50,7 @@ namespace SharepointEmulator
 		{															
 			var camlHelper = new CamlHelper<T>("" + query);
 			var result = new List<T>();
-			foreach (var item in list)
+			foreach (var item in _list)
 			{
 				if (camlHelper.CheckWhere(item))
 				{
@@ -64,7 +62,7 @@ namespace SharepointEmulator
 
 		public List<T> GetAllItems()
 		{
-			return list.ConvertAll(m => _convertationHelper.ConvertToObject(m));
+			return _list.ConvertAll(m => _convertationHelper.ConvertToObject(m));
 		}
 
 		public void UpdateItem(T item) {
@@ -75,12 +73,12 @@ namespace SharepointEmulator
 				throw new Exception("item key not exists");
 			}			
 
-			if (!list.Where(m => m.Id == inputItem.Id).Any())
+			if (!_list.Where(m => m.Id == inputItem.Id).Any())
 			{
 				throw new Exception("item not found");
 			}
 
-			var itemToUpdate= list.Where(m => m.Id == inputItem.Id).FirstOrDefault();
+			var itemToUpdate= _list.Where(m => m.Id == inputItem.Id).FirstOrDefault();
 			foreach (var fieldName in inputItem.GetAllFields().Where(m=>m.ToUpper()!="ID"))
 			{
 				if (fieldName.ToUpper() == BaseListFields.Author.ToUpper()
@@ -95,25 +93,25 @@ namespace SharepointEmulator
 				}
 				itemToUpdate[fieldName] = inputItem[fieldName];
 			}
-			list.ItemUpdating(itemToUpdate);
+			_list.ItemUpdating(itemToUpdate);
 		}
 
 		public int AddItem(T item)
 		{
 			var newItem = _convertationHelper.ConvertToListItem(item);			
 			newItem.Id = idCounter++;
-			list.Add(newItem);
-			list.ItemAdding(newItem);
+			_list.Add(newItem);
+			_list.ItemAdding(newItem);
 			return newItem.Id.Value;
 		}
 
 		public void DeleteItem(int id)
 		{
-			if (!list.Where(m => m.Id == id).Any())
+			if (!_list.Where(m => m.Id == id).Any())
 			{
 				throw new Exception("item not found");
 			}
-			list.RemoveAll(m => m.Id == id);
+			_list.RemoveAll(m => m.Id == id);
 		}
 	}
 }
