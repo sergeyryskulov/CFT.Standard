@@ -83,6 +83,16 @@ namespace SharepointEmulator
 			var itemToUpdate= list.Where(m => m.Id == inputItem.Id).FirstOrDefault();
 			foreach (var fieldName in inputItem.GetAllFields().Where(m=>m.ToUpper()!="ID"))
 			{
+				if (fieldName.ToUpper() == BaseListFields.Author.ToUpper()
+				    && inputItem[fieldName]==null)
+				{
+					continue;					
+				}
+
+				if (fieldName.ToUpper() == BaseListFields.Created.ToUpper())
+				{
+					continue;
+				}
 				itemToUpdate[fieldName] = inputItem[fieldName];
 			}
 			list.ItemUpdating(itemToUpdate);

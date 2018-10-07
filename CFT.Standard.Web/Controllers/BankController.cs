@@ -19,21 +19,40 @@ namespace CFT.Standard.Web.Controllers
 			_bankService = bankService;
 		}
 
+
+	    public ActionResult Edit(int id)
+	    {
+		    return View("Bank", _bankService.GetBank(id));
+	    }
+
+	    [HttpPost]
+	    public ActionResult Edit(Bank bank)
+	    {
+		    _bankService.UpdateBank(bank);
+		    return Redirect("/Bank/All");
+	    }
+
+		public ActionResult Add()
+	    {
+		    return View("Bank", new Bank());
+	    }
+
 		[HttpPost]
 	    public ActionResult Add(Bank bank)
 	    {
 		    _bankService.AddBank(bank);
 			return Redirect("/Bank/All");
-	    }		
-
-		public ActionResult Add()
-		{
-			return View("AddBank", new Bank());
-		}
+	    }	
 
 		public ActionResult All()
 		{			
-			return View("AllBanks", _bankService.GetAllBanks());
+			return View("AllBanks", _bankService.GetAllBanks(""));
 		}
+
+		[HttpPost]
+	    public ActionResult All(AllBanksViewModel model)
+	    {
+		    return View("AllBanks", _bankService.GetAllBanks(model.Filter));
+	    }
 	}
 }

@@ -21,17 +21,31 @@ namespace CFT.Standard.BL.Services
 			_currentUserRepository = currentUserRepository;
 		}
 
+		public void DeleteBank(int id)
+		{
+			_bankRepository.DeleteBank(id);			
+		}
 		public void AddBank(Bank bank)
 		{
 			bank.Author = _currentUserRepository.GetCurrentUserLookupValue();
 			_bankRepository.AddBank(bank);
 		}
 
-		public AllBanksViewModel GetAllBanks()
+		public void UpdateBank(Bank bank)
+		{			
+			_bankRepository.UpdateBank(bank);
+		}
+
+		public Bank GetBank(int id)
+		{
+			return _bankRepository.GetBank(id);
+		}
+
+		public AllBanksViewModel GetAllBanks(string filter)
 		{			
 			return new AllBanksViewModel()
 			{
-				Banks = _bankRepository.GetAllBanks()
+				Banks = _bankRepository.GetAllBanks(filter)
 			};
 		}
 	}

@@ -10,6 +10,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <script src="/Scripts/jquery-3.3.1.js"></script>
     <style>
         .table-banks{
             border-collapse: collapse;
@@ -22,19 +23,40 @@
 
     
     </style>
+    <script>
+
+        function deleteBank(id) {
+            $.post('/api/DeleteBank/' + id,
+                function() {
+                    window.location.reload();
+                });
+        }
+
+        function editBank(id) {
+            window.location = "/Bank/Edit/" + id;
+        }
+
+
+    </script>
 </head>
 <body>
-<div>
-    <a href="/Bank/Add" >Добавить банк</a>
+
+@using (@Html.BeginForm())
+{
+    <a href="/Bank/Add">Добавить банк</a>
     <br/>
+    <br/>
+    @:Найти банк по названию или БИК: @Html.TextBoxFor(m=>m.Filter) <input type="submit" value="Поиск">
     <br />
+    <br />
+
     <table class="table-banks">
-        <tr><th>Создано</th><th>Кем создано</th><th>Название банка</th><th>БИК</th><th>Удалить</th></tr>
+        <tr><th>Создано</th><th>Кем создано</th><th>Название банка</th><th>БИК</th><th>Изменить</th><th>Удалить</th></tr>
         @foreach (var bank in @Model.Banks)
         {
-            <tr><td>@WebConvertationHelper.ToDateFormat(bank.Created)</td> <td>@bank.Author.LookupValue</td><td>@bank.Title</td><td>@bank.Bik</td><td><a href="deleteBank(@bank.Id)">Удалить</a></td></tr>
+            <tr><td>@WebConvertationHelper.ToDateFormat(bank.Created)</td> <td>@bank.Author.LookupValue</td><td>@bank.Title</td><td>@bank.Bik</td><td><a href="javascript:editBank(@bank.Id)">Изменить</a></td><td><a href="javascript:deleteBank(@bank.Id)">Удалить</a></td></tr>
         }
     </table>
-</div>
+}
 </body>
 </html>

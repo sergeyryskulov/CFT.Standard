@@ -7,6 +7,12 @@ namespace CFT.Standard.Domain.Repositories
 	{
 		void AddBank(Bank bank);
 
-		List<Bank> GetAllBanks();
+		void DeleteBank(int id);
+
+		Bank GetBank(int id);
+
+		void UpdateBank(Bank bank);
+
+		List<Bank> GetAllBanks(string filter);
 	}
 }

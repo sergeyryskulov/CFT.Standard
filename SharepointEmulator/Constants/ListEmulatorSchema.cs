@@ -18,5 +18,6 @@ namespace SharepointEmulator
 	{
 		public static string Created="Created";
 
+		public static string Author = "Author";
 	}
 }

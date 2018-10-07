@@ -105,6 +105,16 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CFT.Standard.BL\CFT.Standard.BL.csproj">
+      <Project>{647857ce-7a53-4820-9691-138a14b0a760}</Project>
+      <Name>CFT.Standard.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharepointEmulator\SharepointEmulator.csproj">
+      <Project>{05d9b3ac-e233-4ed4-be55-f2a20b766d96}</Project>
+      <Name>SharepointEmulator</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

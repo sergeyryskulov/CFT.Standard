@@ -1,6 +1,7 @@
 using CFT.Standard.DAL.Repositories;
 using CFT.Standard.Domain.Repositories;
 using System;
+using System.Web.Http;
 using CFT.Standard.DAL.Contexts;
 using Unity;
 using Unity.AspNet.Mvc;
@@ -53,6 +54,8 @@ namespace CFT.Standard.Web
 			//для реальной системы PerRequestLifetimeManager (тогда Dispose будет вызываться автоматом в конце реквеста
 	        //для эмулятора  PerRequestLifetimeManager (мы храним все в оперативке, объект не сбрасываем в конце реквеста)
 			container.RegisterType<StandardListsContext>(new ContainerControlledLifetimeManager(), new InjectionConstructor(true) );
+
+			GlobalConfiguration.Configuration.DependencyResolver=new Unity.WebApi.UnityDependencyResolver(container);
 		}
     }
 }
